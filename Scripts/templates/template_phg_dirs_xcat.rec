@@ -1,0 +1,57 @@
+
+# COHERENT ANGULAR DISTRIBUTION FILES
+STR	coherent_scatter_table = "SIMSET_DIRECTORY/phg.data/coh.tables"
+
+# ACTIVITY INDEX FILE
+STR	activity_indexes = "OUTPUT_DIRECTORY/rec.act_indexes"
+
+# ACTIVITY TABLE FILE
+#STR	activity_table = "SIMSET_DIRECTORY/phg.data/phg_act_table"
+STR     activity_table = "INPUT_DIRECTORY/maps/xcat_phg_act_table"
+# ACTIVITY INDEX TO TABLE TRANSLATION FILE
+STR	activity_index_trans = "SIMSET_DIRECTORY/phg.data/phg_act_index_trans"
+
+# ACTIVITY IMAGE OUTPUT FILE
+STR	activity_image = "OUTPUT_DIRECTORY/rec.activity_image"
+
+# ATTENUATION INDEX FILE
+STR	attenuation_indexes = "OUTPUT_DIRECTORY/rec.att_indexes"
+
+# ATTENUATION TABLE FILE
+STR	attenuation_table = "SIMSET_DIRECTORY/phg.data/phg_att_table"
+
+# ATTENUATION INDEX TO TABLE TRANSLATION FILE
+STR	attenuation_index_trans = "SIMSET_DIRECTORY/phg.data/phg_att_index_trans"
+
+# ATTENUATION IMAGE OUTPUT FILE
+STR	attenuation_image = "OUTPUT_DIRECTORY/rec.attenuation_image"
+
+# PRODUCTIVITY INPUT TABLE FILE
+S_SAMPLINGONSTR	productivity_input_table = "OUTPUT_DIRECTORY/sampling_rec"
+S_SAMPLINGOFFSTR		productivity_input_table = ""
+
+# PRODUCTIVITY TABLE FILE
+S_SAMPLINGONSTR productivity_output_table = ""
+S_SAMPLINGOFFSTR productivity_output_table = "OUTPUT_DIRECTORY/sampling_rec"
+
+# FORCED DETECTION TABLE FILE
+STR	forced_detection_table = ""
+
+STR statistics_file = "OUTPUT_DIRECTORY/rec.stat"
+
+# ISOTOPE DATA FILE
+STR isotope_data_file = "SIMSET_DIRECTORY/phg.data/isotope_positron_energy_data"
+
+#COLLIMATOR PARAMETER FILE
+#STR	collimator_params_file = "OUTPUT_DIRECTORY/col.rec"
+STR	collimator_params_file = ""
+
+# DETECTOR PARAMETER FILE
+STR	detector_params_file = "OUTPUT_DIRECTORY/det.rec"
+
+# BINNING PARAMETER FILE
+STR	bin_params_file  = "OUTPUT_DIRECTORY/BIN.REC"
+
+# HISTORY FILE
+STR	history_file = ""
+

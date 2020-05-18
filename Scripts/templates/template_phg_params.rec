@@ -1,0 +1,30 @@
+##############################################################################
+#
+#	PARAMETER FILE FOR THE PHG SIMULATION
+#
+#       Pablo Aguiar   2005 June-July
+#
+#       Object: Validation DSS
+#	     
+##############################################################################
+
+# RUNTIME OPTIONS
+BOOL		simulate_stratification 			= true
+BOOL		simulate_forced_detection			= true
+BOOL		forced_non_absorbtion 				= true
+REAL		acceptance_angle 				= 90.0
+LONGLONG 	num_to_simulate					= PHOTONS
+REAL    	length_of_scan             			= LENGTH
+BOOL		simulate_SPECT					= false
+BOOL   		simulate_PET_coincidences_only 			= true
+BOOL    	simulate_PET_coincidences_plus_singles  	= false
+BOOL		adjust_for_positron_range			= POSITRON_RANGE
+BOOL		adjust_for_collinearity				= NO_COLINEARIDAD
+REAL		minimum_energy					= 325.0
+REAL		photon_energy					= 511.0
+REAL		weight_window_ratio				= 1.0
+BOOL		point_source_voxels				= false
+INT		random_seed					= SEED_INPUT
+BOOL		model_coherent_scatter				= false
+ENUM 		isotope 					= f18
+

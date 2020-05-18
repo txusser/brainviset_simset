@@ -1,0 +1,168 @@
+######################################
+#
+#  Ring parameter file: Vereos_Ring.rec
+#  Author/Owner:        Jesus Silva
+#  Comments:            Written in Oct 2018
+#
+#######################################
+
+# RING OUTER DIMENSIONS
+# Provides the outer dimensions of the ring: all the blocks must fall entirely
+# within these boundaries.  The ring is bounded with a maximum and minimum
+# z value axially and by elliptical cylinders transaxially.  These bounds are not
+# in tomograph coordinates: the ring can shifted up or down axially or rotated
+# transaxially when placing it in the tomograph.
+
+REAL	ring_x_inner_radius     =   38.16
+REAL	ring_x_outer_radius     =   41
+REAL	ring_y_inner_radius     =   38.16
+REAL	ring_y_outer_radius     =   41
+REAL	ring_z_minimum          =   -8.41
+REAL	ring_z_maximum          =   8.41
+
+# Philips Vereos has 18 rings
+NUM_ELEMENTS_IN_LIST   ring_num_blocks_in_ring  = 18
+
+# Block    0
+NUM_ELEMENTS_IN_LIST   ring_block_description_list  = 5
+STR      ring_block_parameter_file                  = "OUTPUT_DIRECTORY/Vereos.blockparams"
+REAL     ring_block_radial_position                 = 38.16
+REAL     ring_block_angular_position                = 0.00000000000000
+REAL     ring_block_z_position                      = 0.00000000000000
+REAL     ring_block_transaxial_orientation          = 0.00000000000000
+
+# Block    1
+NUM_ELEMENTS_IN_LIST   ring_block_description_list  = 5
+STR      ring_block_parameter_file                  = "OUTPUT_DIRECTORY/Vereos.blockparams"
+REAL     ring_block_radial_position                 = 38.16
+REAL     ring_block_angular_position                = 20.00000000000000
+REAL     ring_block_z_position                      = 0.00000000000000
+REAL     ring_block_transaxial_orientation          = 0.00000000000000
+
+# Block    2
+NUM_ELEMENTS_IN_LIST   ring_block_description_list  = 5
+STR      ring_block_parameter_file                  = "OUTPUT_DIRECTORY/Vereos.blockparams"
+REAL     ring_block_radial_position                 = 38.16
+REAL     ring_block_angular_position                = 40.00000000000000
+REAL     ring_block_z_position                      = 0.00000000000000
+REAL     ring_block_transaxial_orientation          = 0.00000000000000
+
+# Block    3
+NUM_ELEMENTS_IN_LIST   ring_block_description_list  = 5
+STR      ring_block_parameter_file                  = "OUTPUT_DIRECTORY/Vereos.blockparams"
+REAL     ring_block_radial_position                 = 38.16
+REAL     ring_block_angular_position                = 60.00000000000000
+REAL     ring_block_z_position                      = 0.00000000000000
+REAL     ring_block_transaxial_orientation          = 0.00000000000000
+
+# Block    4
+NUM_ELEMENTS_IN_LIST   ring_block_description_list  = 5
+STR      ring_block_parameter_file                  = "OUTPUT_DIRECTORY/Vereos.blockparams"
+REAL     ring_block_radial_position                 = 38.16
+REAL     ring_block_angular_position                = 80.00000000000000
+REAL     ring_block_z_position                      = 0.00000000000000
+REAL     ring_block_transaxial_orientation          = 0.00000000000000
+
+# Block    5
+NUM_ELEMENTS_IN_LIST   ring_block_description_list  = 5
+STR      ring_block_parameter_file                  = "OUTPUT_DIRECTORY/Vereos.blockparams"
+REAL     ring_block_radial_position                 = 38.16
+REAL     ring_block_angular_position                = 100.00000000000000
+REAL     ring_block_z_position                      = 0.00000000000000
+REAL     ring_block_transaxial_orientation          = 0.00000000000000
+
+# Block    6
+NUM_ELEMENTS_IN_LIST   ring_block_description_list  = 5
+STR      ring_block_parameter_file                  = "OUTPUT_DIRECTORY/Vereos.blockparams"
+REAL     ring_block_radial_position                 = 38.16
+REAL     ring_block_angular_position                = 120.00000000000000
+REAL     ring_block_z_position                      = 0.00000000000000
+REAL     ring_block_transaxial_orientation          = 0.00000000000000
+
+# Block    7
+NUM_ELEMENTS_IN_LIST   ring_block_description_list  = 5
+STR      ring_block_parameter_file                  = "OUTPUT_DIRECTORY/Vereos.blockparams"
+REAL     ring_block_radial_position                 = 38.16
+REAL     ring_block_angular_position                = 140.00000000000000
+REAL     ring_block_z_position                      = 0.00000000000000
+REAL     ring_block_transaxial_orientation          = 0.00000000000000
+
+# Block    8
+NUM_ELEMENTS_IN_LIST   ring_block_description_list  = 5
+STR      ring_block_parameter_file                  = "OUTPUT_DIRECTORY/Vereos.blockparams"
+REAL     ring_block_radial_position                 = 38.16
+REAL     ring_block_angular_position                = 160.00000000000000
+REAL     ring_block_z_position                      = 0.00000000000000
+REAL     ring_block_transaxial_orientation          = 0.00000000000000
+
+# Block    9
+NUM_ELEMENTS_IN_LIST   ring_block_description_list  = 5
+STR      ring_block_parameter_file                  = "OUTPUT_DIRECTORY/Vereos.blockparams"
+REAL     ring_block_radial_position                 = 38.16
+REAL     ring_block_angular_position                = 180.00000000000000
+REAL     ring_block_z_position                      = 0.00000000000000
+REAL     ring_block_transaxial_orientation          = 0.00000000000000
+
+# Block    10
+NUM_ELEMENTS_IN_LIST   ring_block_description_list  = 5
+STR      ring_block_parameter_file                  = "OUTPUT_DIRECTORY/Vereos.blockparams"
+REAL     ring_block_radial_position                 = 38.16
+REAL     ring_block_angular_position                = 200.00000000000000
+REAL     ring_block_z_position                      = 0.00000000000000
+REAL     ring_block_transaxial_orientation          = 0.00000000000000
+
+# Block    11
+NUM_ELEMENTS_IN_LIST   ring_block_description_list  = 5
+STR      ring_block_parameter_file                  = "OUTPUT_DIRECTORY/Vereos.blockparams"
+REAL     ring_block_radial_position                 = 38.16
+REAL     ring_block_angular_position                = 220.00000000000000
+REAL     ring_block_z_position                      = 0.00000000000000
+REAL     ring_block_transaxial_orientation          = 0.00000000000000
+
+# Block    12
+NUM_ELEMENTS_IN_LIST   ring_block_description_list  = 5
+STR      ring_block_parameter_file                  = "OUTPUT_DIRECTORY/Vereos.blockparams"
+REAL     ring_block_radial_position                 = 38.16
+REAL     ring_block_angular_position                = 240.00000000000000
+REAL     ring_block_z_position                      = 0.00000000000000
+REAL     ring_block_transaxial_orientation          = 0.00000000000000
+
+# Block    13
+NUM_ELEMENTS_IN_LIST   ring_block_description_list  = 5
+STR      ring_block_parameter_file                  = "OUTPUT_DIRECTORY/Vereos.blockparams"
+REAL     ring_block_radial_position                 = 38.16
+REAL     ring_block_angular_position                = 260.00000000000000
+REAL     ring_block_z_position                      = 0.00000000000000
+REAL     ring_block_transaxial_orientation          = 0.00000000000000
+
+# Block    14
+NUM_ELEMENTS_IN_LIST   ring_block_description_list  = 5
+STR      ring_block_parameter_file                  = "OUTPUT_DIRECTORY/Vereos.blockparams"
+REAL     ring_block_radial_position                 = 38.16
+REAL     ring_block_angular_position                = 280.00000000000000
+REAL     ring_block_z_position                      = 0.00000000000000
+REAL     ring_block_transaxial_orientation          = 0.00000000000000
+
+# Block    15
+NUM_ELEMENTS_IN_LIST   ring_block_description_list  = 5
+STR      ring_block_parameter_file                  = "OUTPUT_DIRECTORY/Vereos.blockparams"
+REAL     ring_block_radial_position                 = 38.16
+REAL     ring_block_angular_position                = 300.00000000000000
+REAL     ring_block_z_position                      = 0.00000000000000
+REAL     ring_block_transaxial_orientation          = 0.00000000000000
+
+# Block    16
+NUM_ELEMENTS_IN_LIST   ring_block_description_list  = 5
+STR      ring_block_parameter_file                  = "OUTPUT_DIRECTORY/Vereos.blockparams"
+REAL     ring_block_radial_position                 = 38.16
+REAL     ring_block_angular_position                = 320.00000000000000
+REAL     ring_block_z_position                      = 0.00000000000000
+REAL     ring_block_transaxial_orientation          = 0.00000000000000
+
+# Block    17
+NUM_ELEMENTS_IN_LIST   ring_block_description_list  = 5
+STR      ring_block_parameter_file                  = "OUTPUT_DIRECTORY/Vereos.blockparams"
+REAL     ring_block_radial_position                 = 38.16
+REAL     ring_block_angular_position                = 340.00000000000000
+REAL     ring_block_z_position                      = 0.00000000000000
+REAL     ring_block_transaxial_orientation          = 0.00000000000000

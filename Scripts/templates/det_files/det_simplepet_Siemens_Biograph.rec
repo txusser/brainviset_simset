@@ -1,0 +1,30 @@
+#######################################################################################################
+#
+#   PARAMETER FILE FOR THE CYLINDRICAL PET
+#   DETECTOR MODULE
+#   
+#   ECAT EXACT HR+ (SIEMENS) DETECTORS SIMPLE PET
+#   October 2011
+#   Berta Martí 
+#######################################################################################################
+
+# Specify type of detector - options are:
+#
+# simple_pet   - performs energy blur according to parameters
+# simple_spect - performs energy blur according to parameters
+# unc_spect    - uses the "UNC" algorithm for geometric collimation
+# polygonal    - multi-block detector for PET/PVI
+# planar       - single block detector for SPECT/Planar
+# cylindrical  - solid cylindrical detector for PET/PVI
+# dual_headed  - two planar blocks for dual headed coincidence imaging
+
+ENUM detector_type = simple_pet
+
+#    Specify the energy resolution as a percentage of FWHM
+REAL    energy_resolution_percentage = 22
+
+#    Specify the reference energy of the detected photons
+REAL    reference_energy_keV = 511
+
+#    Specify the name of the history file (empty for no file)
+STR    history_file = ""

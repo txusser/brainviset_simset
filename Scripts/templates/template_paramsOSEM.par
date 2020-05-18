@@ -1,0 +1,139 @@
+OSMAPOSLParameters :=
+; example file for running OSEM with interfiltering
+; filter specific things are at the end
+
+
+objective function type:= PoissonLogLikelihoodWithLinearModelForMeanAndProjData
+PoissonLogLikelihoodWithLinearModelForMeanAndProjData Parameters:=
+
+input file := PROJECTIONS_SIMSET
+
+zero end planes of segment 0:= 0
+
+; if the next parameter is disabled, 
+; the sensitivity will be computed using the normalisation object
+sensitivity filename:= sens.v
+; if next is set to 1, sensitivity will be recomputed
+; and written to file (if "sensitivity filename" is set)
+recompute sensitivity := 1
+use subset sensitivities := 0
+
+projector pair type := Matrix
+  Projector Pair Using Matrix Parameters :=
+  Matrix type := Ray Tracing
+  Ray tracing matrix parameters :=
+  ;disable caching := 1
+  number of rays in tangential direction to trace for each bin := 10
+  ;restrict to cylindrical FOV := 1
+  ;do symmetry 90degrees min phi := 1
+  ;do symmetry 180degrees min phi := 1
+  End Ray tracing matrix parameters :=
+  End Projector Pair Using Matrix Parameters :=
+  
+ B_ATTEN Bin Normalisation type := From ProjData 
+ B_ATTEN Bin Normalisation From ProjData := 
+ B_ATTEN normalisation projdata filename:= ATTIMAGE_STIR
+ B_ATTEN End Bin Normalisation From ProjData:=
+
+ ;here comes the MRP stuff
+ prior type := FilterRootPrior
+ FilterRootPrior Parameters :=
+  penalisation factor := 0.
+  ; you can use any image processor here
+  ; the next parameters specify a 3x3x3 median
+   Filter type := Median
+    Median Filter Parameters :=
+    mask radius x := 1
+    mask radius y := 1
+    mask radius z := 1
+    End Median Filter Parameters:=
+
+ END FilterRootPrior Parameters :=
+
+
+; specify additive projection data to handle randoms or so
+; see User's Guide for more info
+ B_SCATT additive sinogram := SCATTERIMAGE_STIR
+
+
+; output image sizes
+; warning: will likely disappear. Use "initial estimate" instead
+
+
+;Interfile Output File Parameters:=
+;byte order:= little-endian
+;number format:= signed integer
+;number of the bytes per pixel:=1
+;End Interfile Output File Parameters:=
+
+;choose size of pixels
+ ;x,y pixel size := 1 ;bin_size/zoom
+zoom := ZOOMFACTOR
+;number of x,y pixels (-1 takes default value to cover the FOV)
+ xy output image size (in pixels) := XYOUTPUTSIZE
+ Z output image size (in pixels) := ZOUTPUTSIZE
+
+end PoissonLogLikelihoodWithLinearModelForMeanAndProjData Parameters:=
+
+; Number of subsets should be a divisor of num_views/4
+number of subsets:= SUBSETS
+; Use for starting the numbering from something else than 1
+; Use if you want to start from another subset than 0 (but why?)
+;start at subset:= 0
+number of subiterations:= ITERATIONS
+save estimates at subiteration intervals:= INTERVAL_SAVE
+
+; initial estimate := some_image
+
+; enable this when you read an initial estimate with negative data
+enforce initial positivity condition:=0
+
+output filename prefix := OUTPUT_FILE
+
+
+
+;PostFilteringParameters :=* NO SE HA DEFINIDO SU USO, POR EL MOMENTO COMENTARLO PARA QUE NO LO USE EL PROGRAMA
+
+ ;Post-filter type :=  Separable Cartesian Metz
+ ;Separable Cartesian Metz Filter Parameters :=
+ ;x-dir filter FWHM (in mm):= 5
+ ;y-dir filter FWHM (in mm):= 5
+ ;z-dir filter FWHM (in mm):= 5
+ ;x-dir filter Metz power:= 1
+ ;y-dir filter Metz power:= 1
+ ;z-dir filter Metz power:= 1
+ ;optionally restrict kernel sizes
+ ;x-dir maximum kernel size := 128
+ ;y-dir maximum kernel size := 128
+ ;z-dir maximum kernel size := 63
+ ;End Separable Cartesian Metz Filter Parameters :=
+
+;End PostFiltering Parameters:= * NO SE HA DEFINIDO SU USO, POR EL MOMENTO COMENTARLO PARA QUE NO LO USE EL PROGRAMA
+
+
+;Post-Filtering Parameters := * NO SE HA DEFINIDO SU USO, POR EL MOMENTO COMENTARLO PARA QUE NO LO USE EL PROGRAMA
+
+ ; Post-filter type :=Median   
+ ; Median Filter Parameters :=
+ ; mask radius x := 1
+ ; mask radius y := 1
+ ; mask radius z := 1
+ ; End Median Filter Parameters:=
+
+
+;End Post-Filtering Parameters:=* NO SE HA DEFINIDO SU USO, POR EL MOMENTO COMENTARLO PARA QUE NO LO USE EL PROGRAMA
+
+;inter-iteration filter subiteration interval:= 2
+;inter-iteration filter type := Separable Cartesian Metz
+;Separable Cartesian Metz Filter Parameters :=
+;x-dir filter FWHM (in mm):= 1
+;y-dir filter FWHM (in mm):= 1
+;z-dir filter FWHM (in mm):= 2
+;x-dir filter Metz power:= 0
+;y-dir filter Metz power:= 0
+;z-dir filter Metz power:= 0
+;END Separable Cartesian Metz Filter Parameters :=
+
+
+
+END :=

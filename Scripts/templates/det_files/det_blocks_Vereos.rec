@@ -1,0 +1,54 @@
+##############################################################################
+#
+#       PARAMETER FILE FOR THE PHG SIMULATION
+#
+#       RUN NAME:	Vereos Block Detector Params
+#       CREATED:	Oct 2013
+#       OWNER:		SimSET
+#
+#	An example of a block detector parameters file used on
+#   the block detector web page.
+#
+##############################################################################
+
+# GENERAL DETECTOR MODULE PARAMETERS
+	# DETECTOR TYPE
+	ENUM detector_type = block
+
+	# FORCED INTERACTION
+	# Photons can be forced to interact at least once in the detector array.
+	# Often slows down block detector simulations.
+	BOOL do_forced_interaction = false
+
+	# ENERGY RESOLUTION
+	REAL    reference_energy_keV = 511.0
+	REAL    energy_resolution_percentage = 11.2
+
+	# Specify a TOF resolution as a per-photon 
+	# % full-width-half-maximum in nanoseconds. 
+	REAL 	photon_time_fwhm_ns = 0.230 
+	# (equivalent to 0.325 ns coincidence TOF resolution)
+
+	# HISTORY FILE
+	# STR	history_file = ""
+	# STR history_params_file = ""
+
+# POSITIONING ALGORITHM:  WHERE TO PLACE THE DETECTED POSITION WITHIN BLOCK
+	# snap_centroid_to_crystal_center  uses the center of the crystal nearest to the
+	# energy-weighted centroid of the interactions in active areas
+	# of the block as the detected position. 
+	# use_energy_weighted_centroid which will use the energy-weighted centroid as the detected
+	# position - does not guarantee that the detected position will fall within an active area in the block!
+	ENUM blocktomo_position_algorithm = snap_centroid_to_crystal_center
+
+# DEFINITION OF RING POSITIONS
+# Rings are stacked axially.  The axial extent of one ring cannot
+# overlap that of another.
+NUM_ELEMENTS_IN_LIST blocktomo_num_rings = 1
+
+	# Ring 0
+	NUM_ELEMENTS_IN_LIST	blocktomo_ring_description_list = 3
+		STR		blocktomo_ring_parameter_file = "OUTPUT_DIRECTORY/Vereos.ringparams"
+		REAL	blocktomo_ring_axial_shift = 0
+		REAL	blocktomo_ring_transaxial_rotation =  0
+

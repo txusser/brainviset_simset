@@ -1,0 +1,28 @@
+# SimSET List-Mode Generation for SimPET
+# Written by Jesús Silva Oct 2018
+
+# Importance sampling info:
+BOOL     decay_weight                 =       FALSE
+BOOL     weight                       =       FALSE
+
+
+# Photon path and energy info:	
+
+BOOL    energy                        =       FALSE
+REAL    energy_min                    =       MIN_ENERGY_WINDOW
+REAL    energy_max                    =       650
+
+
+# LOR position:
+
+BOOL    transaxial_distance           =       TRUE
+REAL    transaxial_distance_min       =       MIN_TD
+REAL    transaxial_distance_max       =       MAX_TD
+
+BOOL    azimuthal_angle_index         =       TRUE
+INT     aa_index_min                  =       0
+INT     aa_index_max                  =       NUM_AA_BINS
+
+BOOL    axial_position                =       TRUE
+REAL    axial_position_min            =       MIN_Z
+REAL    axial_position_max            =       MAX_Z

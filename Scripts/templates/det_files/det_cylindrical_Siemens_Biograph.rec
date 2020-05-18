@@ -1,0 +1,86 @@
+#######################################################################################################
+#
+#   PARAMETER FILE FOR THE CYLINDRICAL PET
+#   DETECTOR MODULE
+#   
+#   ECAT EXACT HR+ (SIEMENS) DETECTORS
+#   1 ring of 32x0.405=12.96cm
+#   October 2011
+#   Berta Martí 
+#######################################################################################################
+
+# Specify type of detector - options are:
+#
+# simple_pet   - performs energy blur according to parameters
+# simple_spect - performs energy blur according to parameters
+# unc_spect    - uses the "UNC" algorithm for geometric collimation
+# polygonal    - multi-block detector for PET/PVI
+# planar       - single block detector for SPECT/Planar
+# cylindrical  - solid cylindrical detector for PET/PVI
+# dual_headed  - two planar blocks for dual headed coincidence imaging
+
+ENUM detector_type = cylindrical
+
+# This detector example has a single axial ring
+INT	cyln_num_rings = 1
+
+  # RING #1
+  # The following defines the ring parameters
+  LIST	cyln_ring_info_list = 5
+
+  # This ring has one layer
+	  INT	cyln_num_layers = 1
+	  
+	  # LAYER #1
+	  LIST	cyln_layer_info_list = 4
+		  
+	  # The layer is "active" so it collects light
+			  BOOL	cyln_layer_is_active = TRUE
+			  
+	  # The material is NaI, see list at bottom for options
+			  INT		cyln_layer_material = 10
+
+	  # The radius specification is self-explanatory
+			  REAL	cyln_layer_inner_radius = 41.2
+			  REAL	cyln_layer_outer_radius = 44.2
+
+  # The axial extent of total detectors ( 32 x 0.405 = 12.96cm )
+	  REAL	cyln_min_z = -6.48
+	  REAL	cyln_max_z = 6.48
+
+  	
+# Specify reference energy of the photons (keV)
+REAL    reference_energy_keV = 511.0
+
+# Specify the FWHM (%) at the reference energy
+REAL    energy_resolution_percentage = 22
+
+# This is a list of materials you can use in the detector
+# Name               Number
+#
+
+# Air					  0
+# Water                   1
+# Blood                   2
+# Bone                    3
+# Brain                   4
+# Heart                   5
+# Lung                    6
+# Muscle                  7
+# Lead                    8
+# Sodium Iodide           9
+# BGO                    10
+# Iron                   11
+# Graphite               12
+# Tin                    13
+# GI Trac                14
+# Connective tissue      15
+# Copper                 16
+# Perfect absorber       17
+# LSO                    18
+# GSO                    19
+# Aluminum               20
+# Tungsten               21
+# Liver                  22
+# Fat                    23
+
