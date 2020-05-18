@@ -1,5 +1,7 @@
 .idea/
 Exes/
-Data/
+Data/*
+Data/Maps/*
+Results/
 *.pyc
 *.*~

@@ -64,7 +64,7 @@ STR             count_image_path                = ""
 #STR             count_image_path                = "OUTPUT_DIRECTORY/rec.count"
 
 # Specify history file name for photons reaching the binning parameter
-ACTIVATE_LMSTR             history_file       = "OUTPUT_DIRECTORY/history_file.lm"
+ACTIVATE_LMSTR             history_file       = ""
 
 # Specify history file parameter name for histogram history file
-ACTIVATE_LMSTR            history_params_file       = "OUTPUT_DIRECTORY/listmode.params"
+ACTIVATE_LMSTR            history_params_file       = ""

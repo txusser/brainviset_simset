@@ -137,12 +137,15 @@ if [ $scanner == "Siemens_mCT" ];then
     max_td=31.2
     # Valor del m�nimo de la ventana de energ�a (en keV)
     min_energy_window=435
-    zoomFactor=1		  #Zoom factor in x and y
-    xyOutputSize=256 	  #Reconstruction matrix
-    zOutputSize=103 	  #Number of slices of the reconstruction
-    numberOfSubsets=26	  #Number of subsets
-    numberOfIterations=26 #520   #Number of iterations
-    savingInterval=26	  #The interval that we want to save intermediate iterations images
+    zoomFactor=1		   #Zoom factor in x and y
+    xyOutputSize=256 	   #Reconstruction matrix
+    zOutputSize=103 	   #Number of slices of the reconstruction
+    numberOfSubsets=26	   #Number of subsets
+    numberOfIterations=260 #520   #Number of iterations
+    savingInterval=26	   #The interval that we want to save intermediate iterations images
+
+    # Value of the PSF to modify the sinograms
+    psf_value=1.125
 
     B_ATTEN_PAR=""
     B_SCATT_PAR=""
