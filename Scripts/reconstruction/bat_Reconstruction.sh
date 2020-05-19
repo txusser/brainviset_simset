@@ -54,8 +54,8 @@ fi
 #In case of OSEM reconstruction and scanner Siemens mCT the attenuation correction will be done during the OSEM process.
 echo "Scanner is $scanner"
 if [ $scanner == "Siemens_mCT" ] || [ $scanner == "Vereos" ];then
-    B_ATTEN_PAR=""
-    B_SCATT_PAR=""
+    # B_ATTEN_PAR=""
+    # B_SCATT_PAR=""
 
     #We split the attImage as required
     split -b $cut_end attImage attImage
@@ -106,7 +106,6 @@ elif [ $scanner == "GE_Discovery" ];then
     cp attImage.img attImage.s
     cp full_sinograms${patient}.img prompts.s
 
-### 
     echo "Conv sinogram to projections"
     # #conv_sino2proy prompts.s fl 280 293 576 aux fl
     cortes=`echo ${num_z_bins}*${num_z_bins} | bc -l`
@@ -127,8 +126,6 @@ elif [ $scanner == "GE_Discovery" ];then
     #cp co_trues.hs co_trues_PSF01125px.hs
     #sed -e s%co_trues.s%"co_trues_PSF01125px.s"% < co_trues.hs > co_trues_PSF01125px.hs
     #sed -e s%co_trues.s%"co_trues_PSF075px.s"% < co_trues.hs > co_trues_PSF075px.hs
-
-###
 
     sed -e s%PROJECTIONS_SIMSET%"${DIR_PROJECTIONS}/attImage.s"% \
     < $co_trues_template > ${DIR_PROJECTIONS}/attImage.hs

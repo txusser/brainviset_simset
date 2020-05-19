@@ -11,9 +11,9 @@
 # Version: 1
 #####################################################################################
 
-DIR_STIR=/usr/local/bin #/opt/STIR-Github/install/bin
-DIR_SIMSET=/opt/SimSET/2.9.2 #/opt/SIMSET/2.9.2
-SPM_RUN="/media/usuario3/HDD/SPM_standalone/spm12/run_spm12.sh /media/usuario3/HDD/SPM_standalone/MCR/v713 batch" #"/home/jesus/Work/Neurocloud/neurocloud-core/include/spm12/run_spm12.sh /opt/MATLAB/MATLAB_Compiler_Runtime/v901/ batch"
+DIR_STIR=/home/jesus/repositories/simpet/include/STIR/install/bin #/opt/STIR-Github/install/bin
+DIR_SIMSET=/home/jesus/repositories/simpet/include/SimSET/2.9.2 #/opt/SIMSET/2.9.2
+SPM_RUN="/home/jesus/repositories/neurocloud-core/resources/include/spm12 /home/jesus/repositories/neurocloud-core/resources/include/matlab/v92/ batch" 
 
 # Make CESGA =1 to run in Cesga. Let it be 0 to run at single PC
 CESGA=0
@@ -25,13 +25,13 @@ cesga_max_time=02:00:00
 # -----------------------------------
 
 # PET system (Siemens_mCT, GE_Discovery, GE_Advance)
-scanner=GE_Discovery
+scanner=Siemens_mCT
 # ID simulation
 
-patient=C16_roiAD_0_1
-act_map=newMap_new_roiAD_0.1
-att_map=Ctrl_16.att_newDim
-pet_image=newMap_new_roiAD_0.1
+patient=C3_w413
+act_map=xnewMap_roi5_0.6_flipLR
+att_map=xCtrl_3_flipLR.att
+pet_image=xnewMap_roi5_0.6_flipLR
 output_name=$patient
 min_cc=0.99  #Minimun cross-correlation coefficient for stopping the iterations
 
@@ -63,7 +63,7 @@ fi
 # -----------------------------------
 
 # Central Slice
-corte_central=140 #144 #150 #152 #140 #140 #95 #128  #90
+corte_central=144 #144 #150 #152 #140 #140 #95 #128  #90
 
 # ACTTABLE= If 1 new activity table is calculated in order to fit the given dose.
 ACTTABLE=1
@@ -80,7 +80,7 @@ simulation=1
 reconstruction=1
 
 #Number os subprocesses for parallel simulation
-division=8
+division=2
 
 # PRESERVE_FILES= If 0 the files produced by the phg are deleted when the reconstruction is starting.
 # Any other value preserves the phg output files
@@ -94,7 +94,7 @@ noisefree=0
 # Numero de fotones a simular
 SAMPLINGPHOTONS=100000
 PHOTONS=1000000
-LENGTH=186 #186
+LENGTH=30 #186
 
 # Parameros para separar fotones dispersados
 # Ej: 3-0-3 Proporciona matriz 9x9, as� 0-0,0-1,0-2,0->2,1-0,1-1...
@@ -120,6 +120,7 @@ ANALYZE=1
 # -----------------------------
 
 if [ $scanner == "Siemens_mCT" ];then
+    detector_model=simplepet
     # Radio del cilindro detector del scanner (cm)
     radio_scanner=42.45
     # Numero de anillos del scanner (cm)
@@ -137,18 +138,19 @@ if [ $scanner == "Siemens_mCT" ];then
     max_td=31.2
     # Valor del m�nimo de la ventana de energ�a (en keV)
     min_energy_window=435
-    zoomFactor=1		   #Zoom factor in x and y
-    xyOutputSize=256 	   #Reconstruction matrix
-    zOutputSize=103 	   #Number of slices of the reconstruction
+    zoomFactor=2		   #Zoom factor in x and y
+    xyOutputSize=400 	   #Reconstruction matrix
+    zOutputSize=148 	   #Number of slices of the reconstruction
     numberOfSubsets=26	   #Number of subsets
     numberOfIterations=260 #520   #Number of iterations
     savingInterval=26	   #The interval that we want to save intermediate iterations images
 
     # Value of the PSF to modify the sinograms
-    psf_value=1.125
+    #psf_value=1.125
 
     B_ATTEN_PAR=""
-    B_SCATT_PAR=""
+    B_SCATT_PAR=";"
+
 fi
 
 if [ $scanner == "GE_Advance" ];then
