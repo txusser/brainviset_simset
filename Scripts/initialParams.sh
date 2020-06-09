@@ -11,14 +11,14 @@
 # Version: 1
 #####################################################################################
 
-DIR_STIR=/home/jesus/repositories/simpet/include/STIR/install/bin #/opt/STIR-Github/install/bin
-DIR_SIMSET=/home/jesus/repositories/simpet/include/SimSET/2.9.2 #/opt/SIMSET/2.9.2
+DIR_STIR=/home/usc/mp/paf/simpet/include/STIR/install/bin #/opt/STIR-Github/install/bin
+DIR_SIMSET=/home/usc/mp/paf/simpet/include/SimSET/2.9.2
 SPM_RUN="/home/jesus/repositories/neurocloud-core/resources/include/spm12 /home/jesus/repositories/neurocloud-core/resources/include/matlab/v92/ batch" 
 
 # Make CESGA =1 to run in Cesga. Let it be 0 to run at single PC
-CESGA=0
+CESGA=1
 CESGA_DATA_PATH=$LUSTRE/SimPET/brainviset_simset
-cesga_max_time=02:00:00
+cesga_max_time=01:00:00
 
 # -----------------------------------
 # --------SUBJECT VARIABLES ---------
@@ -138,7 +138,8 @@ if [ $scanner == "Siemens_mCT" ];then
     max_td=31.2
     # Valor del m�nimo de la ventana de energ�a (en keV)
     min_energy_window=435
-    zoomFactor=2		   #Zoom factor in x and y
+    zoomFactor=2
+    zoom_z = 1.5		   #Zoom factor in x and y
     xyOutputSize=400 	   #Reconstruction matrix
     zOutputSize=148 	   #Number of slices of the reconstruction
     numberOfSubsets=26	   #Number of subsets
@@ -150,6 +151,9 @@ if [ $scanner == "Siemens_mCT" ];then
 
     B_ATTEN_PAR=""
     B_SCATT_PAR=";"
+
+    # Value of the PSF to modify the sinograms
+    psf_value=1.125
 
 fi
 
@@ -173,6 +177,7 @@ if [ $scanner == "GE_Advance" ];then
     min_energy_window=375
     #Reconstruction Parameters
     zoomFactor=1		  #Zoom factor in x and y
+    zoom_z = 1
     xyOutputSize=128 	  #Reconstruction matrix
     zOutputSize=35 	  #Number of slices of the reconstruction
     numberOfSubsets=28	  #Number of subsets
@@ -181,6 +186,7 @@ if [ $scanner == "GE_Advance" ];then
 
     B_ATTEN_PAR=";"
     B_SCATT_PAR=";"
+    psf_value=1.125
 fi
 
 if [ $scanner == "GE_Discovery" ];then
@@ -212,6 +218,7 @@ if [ $scanner == "GE_Discovery" ];then
     min_energy_window=375
     #Reconstruction Parameters
     zoomFactor=1.23		  #Zoom factor in x and y
+    zoom_z = 1
     xyOutputSize=128 	  #Reconstruction matrix
     zOutputSize=47 	  #Number of slices of the reconstruction
     numberOfSubsets=7	  #Number of subsets

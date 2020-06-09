@@ -53,118 +53,48 @@ fi
 
 #In case of OSEM reconstruction and scanner Siemens mCT the attenuation correction will be done during the OSEM process.
 echo "Scanner is $scanner"
-if [ $scanner == "Siemens_mCT" ] || [ $scanner == "Vereos" ];then
-    # B_ATTEN_PAR=""
-    # B_SCATT_PAR=""
 
-    #We split the attImage as required
-    split -b $cut_end attImage attImage
-    mv attImageaa attImage.img
-    rm attImagea*
-    cp trues$patient.hdr attImage.hdr
-                    
-    cp trues$patient.hdr attImage.hdr
+split -b $cut_end attImage attImage
+mv attImageaa attImage.img
+rm attImagea*
+cp trues$patient.hdr attImage.hdr
 
-    if [ $detector_model == "blocks" ]; then
-        opera_imagen_hdr attImage.hdr ${DIR_SCRIPTS}/templates/det_files/${scanner}_normalization.hdr attImage.hdr fl divid
-    fi
-                                                                            
-    echo "--------------------------------------------------------"
-    echo "Converting files to STIR format"
-    conv_SimSET_STIR_hdr attImage.hdr $max_segment attImage.hdr
-    conv_SimSET_STIR_hdr full_sinograms${patient}.hdr $max_segment full_sinograms${patient}.hdr
-    conv_SimSET_STIR_hdr original_scatter_${patient}.hdr $max_segment original_scatter_${patient}.hdr
-    cp attImage.img attImage.s
-    cp full_sinograms${patient}.img prompts.s
-    cp original_scatter_${patient}.img additive_sinogram.s
-
-    sed -e s%PROJECTIONS_SIMSET%"${DIR_PROJECTIONS}/attImage.s"% \
-    < $co_trues_template > ${DIR_PROJECTIONS}/attImage.hs
-
-    sed -e s%PROJECTIONS_SIMSET%"${DIR_PROJECTIONS}/prompts.s"% \
-    < $co_trues_template > ${DIR_PROJECTIONS}/prompts.hs
-
-    sed -e s%PROJECTIONS_SIMSET%"${DIR_PROJECTIONS}/additive_sinogram.s"% \
-    < $co_trues_template > ${DIR_PROJECTIONS}/additive_sinogram.hs
-
-    echo "--------------------------------------------------------"
-    echo " "
-
-elif [ $scanner == "GE_Discovery" ];then
-
-    #B_ATTEN_PAR=""
-    #B_SCATT_PAR=";"
-
-    separa_nbytes attImage $size_att  0 $cut_end  attImage.img
-    cp trues$patient.hdr attImage.hdr
-
-    echo "--------------------------------------------------------"
-    echo "Converting files to STIR format"
+echo "--------------------------------------------------------"
+echo "Converting files to STIR format"
     
-    conv_SimSET_STIR_hdr attImage.hdr $max_segment attImage.hdr
-    conv_SimSET_STIR_hdr full_sinograms${patient}.hdr $max_segment full_sinograms${patient}.hdr
-    cp attImage.img attImage.s
-    cp full_sinograms${patient}.img prompts.s
+conv_SimSET_STIR_hdr attImage.hdr $max_segment attImage.hdr
+conv_SimSET_STIR_hdr full_sinograms${patient}.hdr $max_segment full_sinograms${patient}.hdr
+conv_SimSET_STIR_hdr original_scatter_${patient}.hdr $max_segment original_scatter_${patient}.hdr
+cp attImage.img attImage.s
+cp full_sinograms${patient}.img prompts.s
+cp original_scatter_${patient}.img additive_sinogram.s
 
-    echo "Conv sinogram to projections"
-    # #conv_sino2proy prompts.s fl 280 293 576 aux fl
-    cortes=`echo ${num_z_bins}*${num_z_bins} | bc -l`
-    conv_sino2proy prompts.s fl ${num_aa_bins} ${num_td_bins} ${cortes} aux fl
+echo "Conv sinogram to projections"
+cortes=`echo ${num_z_bins}*${num_z_bins} | bc -l`
+conv_sino2proy prompts.s fl ${num_aa_bins} ${num_td_bins} ${cortes} aux fl
 
-    cp aux proyeccion.img
-    cp $DIR_SCRIPTS/templates/template_proyeccion.hdr proyeccion.hdr 	
+cp aux proyeccion.img
+cp $DIR_SCRIPTS/templates/template_proyeccion.hdr proyeccion.hdr 	
 
-    echo "Convolution...(${psf_value} px)"
-    convolucion_hdr proyeccion.hdr conv_proyeccion.hdr ${psf_value} 2d
-     #convolucion_hdr proyeccion.hdr conv_proyeccion.hdr 0.75 2d
+echo "Convolution...(${psf_value} px)"
+convolucion_hdr proyeccion.hdr conv_proyeccion.hdr ${psf_value} 2d
 
-    echo "Conv projection to sinograms"
-     #conv_proy2sino conv_proyeccion.img fl 280 293 576 conv_sinograma.img fl
-    conv_proy2sino conv_proyeccion.img fl ${num_aa_bins} ${num_td_bins} ${cortes} conv_sinograma.img fl
-    cp conv_sinograma.img prompts.s
-    #cp conv_sinograma.img co_trues_PSF075px.s
-    #cp co_trues.hs co_trues_PSF01125px.hs
-    #sed -e s%co_trues.s%"co_trues_PSF01125px.s"% < co_trues.hs > co_trues_PSF01125px.hs
-    #sed -e s%co_trues.s%"co_trues_PSF075px.s"% < co_trues.hs > co_trues_PSF075px.hs
+echo "Conv projection to sinograms"
+conv_proy2sino conv_proyeccion.img fl ${num_aa_bins} ${num_td_bins} ${cortes} conv_sinograma.img fl
+cp conv_sinograma.img prompts.s
 
-    sed -e s%PROJECTIONS_SIMSET%"${DIR_PROJECTIONS}/attImage.s"% \
-    < $co_trues_template > ${DIR_PROJECTIONS}/attImage.hs
+sed -e s%PROJECTIONS_SIMSET%"${DIR_PROJECTIONS}/attImage.s"% \
+< $co_trues_template > ${DIR_PROJECTIONS}/attImage.hs
 
-    sed -e s%PROJECTIONS_SIMSET%"${DIR_PROJECTIONS}/prompts.s"% \
-    < $co_trues_template > ${DIR_PROJECTIONS}/prompts.hs
+sed -e s%PROJECTIONS_SIMSET%"${DIR_PROJECTIONS}/prompts.s"% \
+< $co_trues_template > ${DIR_PROJECTIONS}/prompts.hs
 
-    echo "--------------------------------------------------------"
-    echo " "
+sed -e s%PROJECTIONS_SIMSET%"${DIR_PROJECTIONS}/additive_sinogram.s"% \
+< $co_trues_template > ${DIR_PROJECTIONS}/additive_sinogram.hs
 
-elif [ $scanner == "GE_Advance" ] || [ $scanner == "Siemens_Biograph" ];then    
+echo "--------------------------------------------------------"
+echo "Done"
 
-    #B_ATTEN_PAR=";"
-    #B_SCATT_PAR=";"
-    
-    #Only the first images of attImage interest us
-    separa_nbytes attImage $size_att  0 $cut_end  attImage.img
-
-    echo "--------------------------------------------------------"
-    echo "Correcting attenuation"
-    cp trues$patient.hdr attImage.hdr
-    opera_imagen_hdr full_sinograms$patient.hdr attImage.hdr prompts.hdr fl multi
-
-    echo "--------------------------------------------------------"
-    echo "Converting files to STIR format"
-    echo "conv_SimSET_STIR_hdr prompts.hdr $max_segment prompts.hdr"
-    conv_SimSET_STIR_hdr prompts.hdr $max_segment prompts.hdr
-
-    cp prompts.img prompts.s
-
-    sed -e s%PROJECTIONS_SIMSET%"${DIR_PROJECTIONS}/prompts.s"% \
-    < $co_trues_template > ${DIR_PROJECTIONS}/prompts.hs
-
-    echo "--------------------------------------------------------"
-    echo " "
-
-fi
-
-#Delete the param... directories to free space, only if PRESERVE_FILES is equal to 0
 if [ $PRESERVE_FILES -eq 0 ];then
     echo"WARNING!!! PRESERVE_FILES is 0, temporal files are being deleted. WARNING!! Only added sinograms are preserved"
     rm -r ${namePHG}*

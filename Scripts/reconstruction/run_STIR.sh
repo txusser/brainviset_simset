@@ -25,6 +25,7 @@ then
 	    -e s%B_SCATT%"${B_SCATT_PAR}"% \
             -e s%SENSITIVITY_FILE%"${DIR_RECONSTRUCTIONS}/sens.s"% \
 	    -e s%ZOOMFACTOR%"${zoomFactor}"% \
+      -e s%ZOOM_Z%"${zoom_z}"% \
 	    -e s%XYOUTPUTSIZE%"${xyOutputSize}"% \
 	    -e s%ZOUTPUTSIZE%"${zOutputSize}"% \
 	    -e s%SUBSETS%"${numberOfSubsets}"% \

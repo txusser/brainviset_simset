@@ -31,17 +31,10 @@ Scanner type := SimSet
 number of rings := 52
 number of detectors per ring := 624
 Inner ring diameter (cm) := 84.90
-Average depth of interaction (cm) := 0.1
-distance between rings (cm) := .4
+Average depth of interaction (cm) := 0
+distance between rings (cm) := .41923076923076923076923076923077
 Default bin size (cm) := .2
-;Number of blocks per bucket in transaxial direction         := 1
-;Number of blocks per bucket in axial direction              := 4
-;Number of crystals per block in transaxial direction        := 8
-;Number of crystals per block in axial direction             := 8
-;Number of detector layers                                   := 1
-;Number of crystals per singles unit in axial direction      := 32
-;Number of crystals per singles unit in transaxial direction := 8
-;end scanner parameters:=
+end scanner parameters:=
 
 
 effective central bin size (cm) := .2
