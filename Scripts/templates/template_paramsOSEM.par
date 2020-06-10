@@ -39,7 +39,7 @@ projector pair type := Matrix
 
  END FilterRootPrior Parameters :=
 
- B_SCATT additive sinogram := SCATTERIMAGE_STIR
+B_SCATT additive sinogram := SCATTERIMAGE_STIR
 
 zoom := ZOOMFACTOR
 z zoom := ZOOM_Z

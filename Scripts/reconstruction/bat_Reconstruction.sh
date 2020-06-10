@@ -51,7 +51,6 @@ else
     co_trues_template=$DIR_SCRIPTS/templates/prompts_${scanner}.hs
 fi
 
-#In case of OSEM reconstruction and scanner Siemens mCT the attenuation correction will be done during the OSEM process.
 echo "Scanner is $scanner"
 
 split -b $cut_end attImage attImage
@@ -71,15 +70,15 @@ cp original_scatter_${patient}.img additive_sinogram.s
 
 echo "Conv sinogram to projections"
 cortes=`echo ${num_z_bins}*${num_z_bins} | bc -l`
-conv_sino2proy prompts.s fl ${num_aa_bins} ${num_td_bins} ${cortes} aux fl
 
-cp aux proyeccion.img
-cp $DIR_SCRIPTS/templates/template_proyeccion.hdr proyeccion.hdr 	
+echo "Conv sinograms to proyections"
+conv_sino2proy prompts.s fl ${num_aa_bins} ${num_td_bins} ${cortes} proyeccion.img fl
+gen_hdr proyeccion ${num_td_bins} ${cortes} ${num_aa_bins} fl 1 1 1 0
 
-echo "Convolution...(${psf_value} px)"
+echo "Convolution with a PSF of (${psf_value} px)"
 convolucion_hdr proyeccion.hdr conv_proyeccion.hdr ${psf_value} 2d
 
-echo "Conv projection to sinograms"
+echo "Conv projections back to sinograms"
 conv_proy2sino conv_proyeccion.img fl ${num_aa_bins} ${num_td_bins} ${cortes} conv_sinograma.img fl
 cp conv_sinograma.img prompts.s
 

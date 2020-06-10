@@ -8,7 +8,7 @@
 #24/12/2012
 
 unset sensitivityFileName reconstructionFileName 
-unset zoomFactor xyOutputize zOutputZie 
+unset zoomFactor zoom_z xyOutputize zOutputZie 
 unset numberOfSubsets numberOfIterations savingInterval
 
 #set variables
@@ -23,7 +23,7 @@ then
 	    -e s%SCATTERIMAGE_STIR%"${DIR_PROJECTIONS}/additive_sinogram.hs"% \
 	    -e s%B_ATTEN%"${B_ATTEN_PAR}"% \
 	    -e s%B_SCATT%"${B_SCATT_PAR}"% \
-            -e s%SENSITIVITY_FILE%"${DIR_RECONSTRUCTIONS}/sens.s"% \
+      -e s%SENSITIVITY_FILE%"${DIR_RECONSTRUCTIONS}/sens.s"% \
 	    -e s%ZOOMFACTOR%"${zoomFactor}"% \
       -e s%ZOOM_Z%"${zoom_z}"% \
 	    -e s%XYOUTPUTSIZE%"${xyOutputSize}"% \

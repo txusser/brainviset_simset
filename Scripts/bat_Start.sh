@@ -101,7 +101,7 @@ then
         sleep 5; 
 	if [ $CESGA -eq 1 ]
 	then
-	    sbatch -t $cesga_max_time -c 1  --mem=4096 --get-user-env -o simLog_SIM${cSim}.log  bat_Simulation.sh
+	    sbatch -t $cesga_max_time -c 1  --mem=16000 --get-user-env -o simLog_SIM${cSim}.log  bat_Simulation.sh
 	else
         ./bat_Simulation.sh >> "simLog_SIM${cSim}.log" &
 	fi

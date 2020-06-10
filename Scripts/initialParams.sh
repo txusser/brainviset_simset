@@ -18,7 +18,7 @@ SPM_RUN="/home/jesus/repositories/neurocloud-core/resources/include/spm12 /home/
 # Make CESGA =1 to run in Cesga. Let it be 0 to run at single PC
 CESGA=1
 CESGA_DATA_PATH=$LUSTRE/SimPET/brainviset_simset
-cesga_max_time=01:00:00
+cesga_max_time=01:20:00
 
 # -----------------------------------
 # --------SUBJECT VARIABLES ---------
@@ -94,7 +94,7 @@ noisefree=0
 # Numero de fotones a simular
 SAMPLINGPHOTONS=100000
 PHOTONS=1000000
-LENGTH=30 #186
+LENGTH=186 #186
 
 # Parameros para separar fotones dispersados
 # Ej: 3-0-3 Proporciona matriz 9x9, as� 0-0,0-1,0-2,0->2,1-0,1-1...
@@ -139,7 +139,7 @@ if [ $scanner == "Siemens_mCT" ];then
     # Valor del m�nimo de la ventana de energ�a (en keV)
     min_energy_window=435
     zoomFactor=2
-    zoom_z = 1.5		   #Zoom factor in x and y
+    zoom_z=1.5		   #Zoom factor in x and y
     xyOutputSize=400 	   #Reconstruction matrix
     zOutputSize=148 	   #Number of slices of the reconstruction
     numberOfSubsets=26	   #Number of subsets
@@ -218,7 +218,7 @@ if [ $scanner == "GE_Discovery" ];then
     min_energy_window=375
     #Reconstruction Parameters
     zoomFactor=1.23		  #Zoom factor in x and y
-    zoom_z = 1
+    zoom_z=1
     xyOutputSize=128 	  #Reconstruction matrix
     zOutputSize=47 	  #Number of slices of the reconstruction
     numberOfSubsets=7	  #Number of subsets
