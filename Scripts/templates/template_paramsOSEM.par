@@ -15,7 +15,7 @@ projector pair type := Matrix
   Matrix type := Ray Tracing
   Ray tracing matrix parameters :=
   ;disable caching := 1
-  number of rays in tangential direction to trace for each bin := 10
+  number of rays in tangential direction to trace for each bin := 5
   End Ray tracing matrix parameters :=
   End Projector Pair Using Matrix Parameters :=
   

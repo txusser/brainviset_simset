@@ -75,8 +75,14 @@ echo "Conv sinograms to proyections"
 conv_sino2proy prompts.s fl ${num_aa_bins} ${num_td_bins} ${cortes} proyeccion.img fl
 gen_hdr proyeccion ${num_td_bins} ${cortes} ${num_aa_bins} fl 1 1 1 0
 
-echo "Convolution with a PSF of (${psf_value} px)"
-convolucion_hdr proyeccion.hdr conv_proyeccion.hdr ${psf_value} 2d
+if [ ${psf_value} != 0 ];then
+	echo "Convolution with a PSF of (${psf_value} px)"
+	convolucion_hdr proyeccion.hdr conv_proyeccion.hdr ${psf_value} 2d
+else
+	cp proyeccion.img conv_proyeccion.img
+	echo "Avoiding convulution"
+
+fi
 
 echo "Conv projections back to sinograms"
 conv_proy2sino conv_proyeccion.img fl ${num_aa_bins} ${num_td_bins} ${cortes} conv_sinograma.img fl

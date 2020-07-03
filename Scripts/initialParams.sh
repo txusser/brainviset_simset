@@ -11,7 +11,7 @@
 # Version: 1
 #####################################################################################
 
-DIR_STIR=/home/usc/mp/paf/simpet/include/STIR/install/bin #/opt/STIR-Github/install/bin
+DIR_STIR=/home/usc/mp/paf/STIRUCL/install/bin #/opt/STIR-Github/install/bin
 DIR_SIMSET=/home/usc/mp/paf/simpet/include/SimSET/2.9.2
 SPM_RUN="/home/jesus/repositories/neurocloud-core/resources/include/spm12 /home/jesus/repositories/neurocloud-core/resources/include/matlab/v92/ batch" 
 
@@ -74,13 +74,13 @@ DOSE=1.25 #1.25 # 0.33 #2 #1.25 # mCi
 # --------------------------------------
 
 #simulation process (activated = 1 - deactivated = 0)
-simulation=1
+simulation=0
 
 #reconstruction process (activated = 1 - deactivated = 0)
 reconstruction=1
 
 #Number os subprocesses for parallel simulation
-division=2
+division=16
 
 # PRESERVE_FILES= If 0 the files produced by the phg are deleted when the reconstruction is starting.
 # Any other value preserves the phg output files
@@ -138,22 +138,19 @@ if [ $scanner == "Siemens_mCT" ];then
     max_td=31.2
     # Valor del m�nimo de la ventana de energ�a (en keV)
     min_energy_window=435
-    zoomFactor=2
-    zoom_z=1.5		   #Zoom factor in x and y
-    xyOutputSize=400 	   #Reconstruction matrix
-    zOutputSize=148 	   #Number of slices of the reconstruction
+    zoomFactor=1
+    zoom_z=1		   #Zoom factor in x and y
+    xyOutputSize=200 	   #Reconstruction matrix
+    # zOutputSize=148 	   #Number of slices of the reconstruction
     numberOfSubsets=26	   #Number of subsets
-    numberOfIterations=260 #520   #Number of iterations
+    numberOfIterations=130 #520   #Number of iterations
     savingInterval=26	   #The interval that we want to save intermediate iterations images
-
-    # Value of the PSF to modify the sinograms
-    #psf_value=1.125
 
     B_ATTEN_PAR=""
     B_SCATT_PAR=";"
 
     # Value of the PSF to modify the sinograms
-    psf_value=1.125
+    psf_value=.075
 
 fi
 

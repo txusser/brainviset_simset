@@ -4,7 +4,7 @@ Originating System := Userdefined
 !GENERAL DATA :=
 !GENERAL IMAGE DATA :=
 !type of data := PET
-;applied corrections:={none}
+;applied corrections:={None}
 ;ASCII list, Static|Dynamic|Gated|Tomographic|Curve|ROI|PET|Other
 imagedata byte order := LITTLEENDIAN
 !PET STUDY (General) :=
@@ -31,7 +31,7 @@ Scanner type := SimSet
 number of rings := 52
 number of detectors per ring := 624
 Inner ring diameter (cm) := 84.90
-Average depth of interaction (cm) := 0
+Average depth of interaction (cm) := 0.1
 distance between rings (cm) := .41923076923076923076923076923077
 Default bin size (cm) := .2
 end scanner parameters:=

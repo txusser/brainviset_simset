@@ -143,28 +143,36 @@ while [ $iteration -le $maximumIteration ];do
 
 	    #Getting data for the final OSEM iteration
 	    output_prefix=$DIR_RECONSTRUCTIONS/${recFileName}_${numberOfIterations}
+	    echo $output_prefix
 	    output_hdr=$DIR_RECONSTRUCTIONS/${recFileName}_${numberOfIterations}_it$iteration.hdr
 	    output_img=$DIR_RECONSTRUCTIONS/${recFileName}_${numberOfIterations}_it$iteration.img
 
 	    #Now we are going to read the .hv header to get the values for the .hdr header
 	    line_voxx="$(grep -F "matrix size [1]" ${output_prefix}.hv)"
-	    voxx="$(echo $line_voxx | python -c "print raw_input()[:].split()[-1]")"
+	    echo $line_voxx
+	    voxx="$(echo $line_voxx | python3 -c "print(input()[:].split()[-1])")"
 	    line_voxy="$(grep -F "matrix size [2]" ${output_prefix}.hv)"
-	    voxy="$(echo $line_voxy | python -c "print raw_input()[:].split()[-1]")"
+	    voxy="$(echo $line_voxy | python3 -c "print(input()[:].split()[-1])")"
 	    line_voxz="$(grep -F "matrix size [3]" ${output_prefix}.hv)"
-	    voxz="$(echo $line_voxz | python -c "print raw_input()[:].split()[-1]")"
+	    voxz="$(echo $line_voxz | python3 -c "print(input()[:].split()[-1])")"
 
 	    line_svoxx="$(grep -F "scaling factor (mm/pixel) [1]" ${output_prefix}.hv)"
-	    svoxx="$(echo $line_svoxx | python -c "print raw_input()[:].split()[-1]")"
+	    svoxx="$(echo $line_svoxx | python3 -c "print(input()[:].split()[-1])")"
 	    line_svoxy="$(grep -F "scaling factor (mm/pixel) [2]" ${output_prefix}.hv)"
-	    svoxy="$(echo $line_svoxy | python -c "print raw_input()[:].split()[-1]")"
+	    svoxy="$(echo $line_svoxy | python3 -c "print(input()[:].split()[-1])")"
 	    line_svoxz="$(grep -F "scaling factor (mm/pixel) [3]" ${output_prefix}.hv)"
-	    svoxz="$(echo $line_svoxz | python -c "print raw_input()[:].split()[-1]")"
+	    svoxz="$(echo $line_svoxz | python3 -c "print(input()[:].split()[-1])")"
 
 	    #Now we generate a new Analyze Image
-	    gen_hdr ${output_prefix}_it$iteration $voxx $voxy $voxz fl $svoxx $svoxy $svoxz 0
+	    
+	    gen_hdr ${recFileName}_${numberOfIterations}_it$iteration ${voxx} ${voxy} ${voxz} fl ${svoxx} ${svoxy} ${svoxz} 0
 	    mv $output_prefix.v $output_img
-
+	    mv ${recFileName}_${numberOfIterations}_it${iteration}.hdr $output_hdr
+	    if [ $scanner == "Siemens_mCT" ];then
+		cd $DIR_RECONSTRUCTIONS
+		cambia_matriz_imagen_hdr ${recFileName}_${numberOfIterations}_it$iteration.hdr ${recFileName}_${numberOfIterations}_it$iteration.hdr 400 400 148 novecino
+		cd -
+	    fi
             $DIR_SCRIPTS/new_map_generation_spm.py $output_hdr $PET_HDR $SPM_RUN
 
 	    if 	[ $maximumIteration -gt 1 ]
