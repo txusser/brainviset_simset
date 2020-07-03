@@ -150,7 +150,7 @@ if [ $scanner == "Siemens_mCT" ];then
     B_SCATT_PAR=";"
 
     # Value of the PSF to modify the sinograms
-    psf_value=.075
+    psf_value=1.0
 
 fi
 
