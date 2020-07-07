@@ -151,6 +151,7 @@ if [ $scanner == "Siemens_mCT" ];then
 
     # Value of the PSF to modify the sinograms
     psf_value=1.0
+    add_noise=0
 
 fi
 
@@ -183,7 +184,9 @@ if [ $scanner == "GE_Advance" ];then
 
     B_ATTEN_PAR=";"
     B_SCATT_PAR=";"
+
     psf_value=1.125
+    add_noise=0.01
 fi
 
 if [ $scanner == "GE_Discovery" ];then
@@ -222,11 +225,12 @@ if [ $scanner == "GE_Discovery" ];then
     numberOfIterations=32 #32 #Number of iterations
     savingInterval=32	#8  #The interval that we want to save intermediate iterations images
 
-    # Value of the PSF to modify the sinograms
-    psf_value=1.125
-
     B_ATTEN_PAR=""
     B_SCATT_PAR=";"
+
+    # Value of the PSF to modify the sinograms
+    psf_value=1.125
+    add_noise=0
 fi
 
 # ------------------------------------------

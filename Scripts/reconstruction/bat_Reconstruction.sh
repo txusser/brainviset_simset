@@ -60,6 +60,10 @@ cp trues$patient.hdr attImage.hdr
 
 echo "--------------------------------------------------------"
 echo "Converting files to STIR format"
+
+if [ ${B_ATTEN_PAR} -eq ";" ];then
+    opera_imagen_hdr attImage.hdr full_sinograms${patient}.hdr full_sinograms${patient}.hdr fl multi
+fi
     
 conv_SimSET_STIR_hdr attImage.hdr $max_segment attImage.hdr
 conv_SimSET_STIR_hdr full_sinograms${patient}.hdr $max_segment full_sinograms${patient}.hdr
@@ -96,6 +100,12 @@ sed -e s%PROJECTIONS_SIMSET%"${DIR_PROJECTIONS}/prompts.s"% \
 
 sed -e s%PROJECTIONS_SIMSET%"${DIR_PROJECTIONS}/additive_sinogram.s"% \
 < $co_trues_template > ${DIR_PROJECTIONS}/additive_sinogram.hs
+
+if [ ${add_noise} != 0 ];then
+	echo "Adding some noise to make things look more realistic"
+	$DIR_STIR/poisson_noise -p ${DIR_PROJECTIONS}/noisy_prompts.hs ${DIR_PROJECTIONS}/prompts.hs $add_noise $RANDOM
+    cp noisy_prompts.s prompts.s
+fi
 
 echo "--------------------------------------------------------"
 echo "Done"
