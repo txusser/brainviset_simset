@@ -64,10 +64,12 @@ echo "Converting files to STIR format"
 if [ ${B_ATTEN_PAR} -eq ";" ];then
     opera_imagen_hdr attImage.hdr full_sinograms${patient}.hdr full_sinograms${patient}.hdr fl multi
 fi
+
+segment=$((${num_z_bins}-1))
     
-conv_SimSET_STIR_hdr attImage.hdr $max_segment attImage.hdr
-conv_SimSET_STIR_hdr full_sinograms${patient}.hdr $max_segment full_sinograms${patient}.hdr
-conv_SimSET_STIR_hdr original_scatter_${patient}.hdr $max_segment original_scatter_${patient}.hdr
+conv_SimSET_STIR_hdr attImage.hdr $segment attImage.hdr
+conv_SimSET_STIR_hdr full_sinograms${patient}.hdr $segment full_sinograms${patient}.hdr
+conv_SimSET_STIR_hdr original_scatter_${patient}.hdr $segment original_scatter_${patient}.hdr
 cp attImage.img attImage.s
 cp full_sinograms${patient}.img prompts.s
 cp original_scatter_${patient}.img additive_sinogram.s

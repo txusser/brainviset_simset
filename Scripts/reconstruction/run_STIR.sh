@@ -19,6 +19,7 @@ if [ $recons_type -eq 0 ] || [ $recons_type -eq 1 ];
 then
 	# Building paramsOSEM.par
 	sed -e s%PROJECTIONS_SIMSET%"${DIR_PROJECTIONS}/prompts.hs"% \
+      -e s%SEGMENT%"${max_segment}"% \
 	    -e s%ATTIMAGE_STIR%"${DIR_PROJECTIONS}/attImage.hs"% \
 	    -e s%SCATTERIMAGE_STIR%"${DIR_PROJECTIONS}/additive_sinogram.hs"% \
 	    -e s%B_ATTEN%"${B_ATTEN_PAR}"% \

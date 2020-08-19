@@ -4,7 +4,7 @@ objective function type:= PoissonLogLikelihoodWithLinearModelForMeanAndProjData
 PoissonLogLikelihoodWithLinearModelForMeanAndProjData Parameters:=
 
 input file := PROJECTIONS_SIMSET
-
+maximum absolute segment number to process := SEGMENT
 zero end planes of segment 0:= 0
 sensitivity filename:= sens.v
 recompute sensitivity := 1
