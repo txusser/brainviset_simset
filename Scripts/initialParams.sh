@@ -178,8 +178,8 @@ if [ $scanner == "GE_Advance" ];then
     zoom_z = 1
     xyOutputSize=128 	  #Reconstruction matrix
     zOutputSize=35 	  #Number of slices of the reconstruction
-    numberOfSubsets=28	  #Number of subsets
-    numberOfIterations=560 #520   #Number of iterations
+    numberOfSubsets=14	  #Number of subsets
+    numberOfIterations=56 #520   #Number of iterations
     savingInterval=28	  #The interval that we want to save intermediate iterations images
 
     B_ATTEN_PAR=";"
